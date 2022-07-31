@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34012ee274590b44bb2d9652d19c0dd2, type: 3}
+  m_Name: GroundEnvironmentConfig_Trees_Forest
+  m_EditorClassIdentifier: 
+  EnvironmentPrefabs:
+  - Prefab: {fileID: 7444892648234360934, guid: 78ffcf2fc2bc36149984c45f967eb921, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.5
+    MaxScale: 2.28
+  - Prefab: {fileID: 3812768343314121779, guid: 8454fa880216fa743aff63af93ff0ff2, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.58
+    MaxScale: 2.44
+  - Prefab: {fileID: 5026957271158206552, guid: 3eacae34980a58a49a2308cab9240bac, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.85
+    MaxScale: 2.52
+  PerlinFrequency: 1
+  PerlinFloor: 0.706
+  SpawnChance: 1
