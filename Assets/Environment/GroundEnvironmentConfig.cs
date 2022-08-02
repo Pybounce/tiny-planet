@@ -12,6 +12,18 @@ public class GroundEnvironmentConfig : ScriptableObject
     public float PerlinFloor = 1f;
     [Range (0f, 1f), Tooltip("Random chance. The object will not spawn if it fails this chance.")]
     public float SpawnChance = 1f;
+    public int TotalWeight
+    {
+        get
+        {
+            int tw = 0;
+            foreach (GroundEnvironmentObject obj in EnvironmentPrefabs)
+            {
+                tw += obj.SpawnWeight;
+            }
+            return tw;
+        }
+    }
 }
 
 [Serializable]
