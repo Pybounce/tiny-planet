@@ -30,8 +30,26 @@ public class PlanetGenerator : MonoBehaviour
                 //if pass, do perlin chance
                 //if pass get object
                 //if any fail, continue
-                if (PybMath.Chance(_config.SpawnChance) == false) { continue; }
+                if (_config.EnvironmentPrefabs.Length <= 0) { continue; }   //No objects in config to place
+                if (PybMath.Chance(_config.SpawnChance) == false) { continue; } //Failed spawn chance check
+                if (false) { continue; }    //*** ***Perlin Chance Check Goes Here*** ***\\  //Failed perlin chance check
+                int _totalWeight = 0;
+                foreach (var _prefab in _config.EnvironmentPrefabs)
+                {
+                    _totalWeight += _prefab.SpawnWeight;
+                }
+                GroundEnvironmentObject _selectedPrefab;
+                int _randomObjChance = Random.Range(0, _totalWeight);
+                foreach (var _prefab in _config.EnvironmentPrefabs)
+                {
+                    _selectedPrefab = _prefab;
+                    if (_prefab.SpawnWeight <= _randomObjChance) { break; }
+                    _randomObjChance -= _prefab.SpawnWeight;
+                }
 
+                //*** ***Spawn Object Here*** ***\\
+
+                break;  //If an object has been placed on this point, we don't need to check the other configs.
             }
         }
     }
