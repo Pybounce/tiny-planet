@@ -14,17 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnvironmentPrefabs:
   - Prefab: {fileID: 7444892648234360934, guid: 78ffcf2fc2bc36149984c45f967eb921, type: 3}
-    SpawnWeight: 100
-    MinScale: 0.5
-    MaxScale: 2.28
+    SpawnWeight: 30
+    MinScale: 1.1
+    MaxScale: 1.71
   - Prefab: {fileID: 3812768343314121779, guid: 8454fa880216fa743aff63af93ff0ff2, type: 3}
     SpawnWeight: 100
-    MinScale: 0.58
-    MaxScale: 2.44
+    MinScale: 1.07
+    MaxScale: 1.61
   - Prefab: {fileID: 5026957271158206552, guid: 3eacae34980a58a49a2308cab9240bac, type: 3}
     SpawnWeight: 100
-    MinScale: 0.85
-    MaxScale: 2.52
+    MinScale: 1.19
+    MaxScale: 1.62
+  - Prefab: {fileID: 8682081305988498467, guid: fb0a1588ab2224a48869e51229473921, type: 3}
+    SpawnWeight: 30
+    MinScale: 0.63
+    MaxScale: 1.18
   PerlinFrequency: 1
-  PerlinFloor: 0.706
+  PerlinFloor: 0.48
   SpawnChance: 1

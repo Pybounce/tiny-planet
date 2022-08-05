@@ -15,6 +15,28 @@ namespace PybUtilities
             if (_chance >= Random.Range(0f, 1f)) { return true; }
             return false;
         }
+
+
+        public static float PerlinNoise3D(float x, float y, float z)
+        {
+            int _seed = Random.Range(-1000000, 1000000);
+            x += _seed;
+            y += _seed;
+            z += _seed;
+
+            float xy = Mathf.PerlinNoise(x, y);
+            float xz = Mathf.PerlinNoise(x, z);
+            float yz = Mathf.PerlinNoise(y, z);
+            float yx = Mathf.PerlinNoise(y, x);
+            float zx = Mathf.PerlinNoise(z, x);
+            float zy = Mathf.PerlinNoise(z, y);
+
+            return (xy + xz + yz + yx + zx + zy) / 6f;
+        }
+        public static float PerlinNoise3D(Vector3 v3)
+        {
+            return PerlinNoise3D(v3.x, v3.y, v3.z);
+        }
     }
 
 }

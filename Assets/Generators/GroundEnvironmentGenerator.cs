@@ -11,6 +11,12 @@ public class GroundEnvironmentGenerator : MonoBehaviour
     private GroundEnvironmentConfig[] groundConfigs;
 
 
+    public void Initialise(Vector3[] _terrainVerts, GroundEnvironmentConfig[] _groundConfigs)
+    {
+        this.terrainVerts = _terrainVerts;
+        this.groundConfigs = _groundConfigs;
+    }
+
     /// <summary>
     /// Loops through each vert and places an object if needed (based on groundEnvironmentConfig).
     /// </summary>
@@ -20,25 +26,33 @@ public class GroundEnvironmentGenerator : MonoBehaviour
         {
             foreach (GroundEnvironmentConfig _config in groundConfigs)
             {
-
+                if (ConfigPassBasicChance(_config) == false) { continue; }
+                if (ConfigPassPerlinChance(_config, _vert) == false) { continue; }
+                GroundEnvironmentObject _objToPlace = GetObjectToPlace(_config);
+                PlaceObjectAtVert(_objToPlace, _vert);
             }
         }
     }
 
-    /// <summary>
-    /// Returns the environmental prefab containing the object to be placed.
-    /// </summary>
     private bool ConfigPassBasicChance(GroundEnvironmentConfig _config)
     {
         return PybMath.Chance(_config.SpawnChance);
     }
 
+    private bool ConfigPassPerlinChance(GroundEnvironmentConfig _config, Vector3 _vert)
+    {
+        return PybMath.PerlinNoise3D(_vert) >= _config.PerlinFloor;
+    }
+
+    /// <summary>
+    /// Returns the environmental prefab containing the object to be placed.
+    /// </summary>
     private GroundEnvironmentObject GetObjectToPlace(GroundEnvironmentConfig _config)
     {
         int _randomObjChance = Random.Range(0, _config.TotalWeight);
         foreach (var _prefab in _config.EnvironmentPrefabs)
         {
-            if (_prefab.SpawnWeight <= _randomObjChance) { return _prefab; }
+            if (_prefab.SpawnWeight >= _randomObjChance) { return _prefab; }
             _randomObjChance -= _prefab.SpawnWeight;
         }
         if (_config.EnvironmentPrefabs == null || _config.EnvironmentPrefabs.Length <= 0)
@@ -50,5 +64,16 @@ public class GroundEnvironmentGenerator : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Assuming all verts point out from the origin. Places an object on the vert at the correct angle.
+    /// </summary>
+    private void PlaceObjectAtVert(GroundEnvironmentObject _obj, Vector3 _vert)
+    {
+        GameObject _environmentObj = Instantiate(_obj.Prefab);
+        _environmentObj.transform.position = _vert;
+        _environmentObj.transform.rotation = Quaternion.LookRotation(_vert);
+        _environmentObj.transform.Rotate(new Vector3(90f, 0f, 0f));
+        _environmentObj.transform.localScale = Random.Range(_obj.MinScale, _obj.MaxScale) * Vector3.one;
+    }
 
 }
