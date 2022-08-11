@@ -9,9 +9,9 @@ public class PlanetGenerator : MonoBehaviour
     private PlanetEnvironmentGenerator planetEnvironmentGenerator;
 
     [SerializeField] private GroundEnvironmentConfig[] groundEnvironmentConfigs;
-    [SerializeField] private GameObject tempPlanetVertObj;  //THIS IS TEMPORARY!
+    [SerializeField] private PlanetTerrainConfig planetTerrainConfig;
 
-    private void Awake()
+    void Awake()
     {
         planetTerrainGenerator = this.gameObject.AddComponent<PlanetTerrainGenerator>();
         planetEnvironmentGenerator = this.gameObject.AddComponent<PlanetEnvironmentGenerator>();
@@ -19,17 +19,19 @@ public class PlanetGenerator : MonoBehaviour
 
     private void Start()
     {
-        Initialise();
         Generate();
     }
 
     public void Initialise()
     {
-        planetEnvironmentGenerator.Initialise(tempPlanetVertObj.GetComponent<MeshFilter>().sharedMesh.vertices, groundEnvironmentConfigs);
     }
 
     public void Generate()
     {
+        planetTerrainGenerator.Initialise(planetTerrainConfig);
+        planetTerrainGenerator.Generate();
+
+        planetEnvironmentGenerator.Initialise(planetTerrainGenerator.TerrainMesh.vertices, groundEnvironmentConfigs);
         planetEnvironmentGenerator.Generate();
     }
 }
