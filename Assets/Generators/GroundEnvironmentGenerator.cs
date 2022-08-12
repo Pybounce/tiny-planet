@@ -71,8 +71,12 @@ public class GroundEnvironmentGenerator : MonoBehaviour
     {
         GameObject _environmentObj = Instantiate(_obj.Prefab);
         _environmentObj.transform.position = _vert;
-        _environmentObj.transform.rotation = Quaternion.LookRotation(_vert);
+
+        //rotate to the planet normal
+        _environmentObj.transform.rotation = Quaternion.LookRotation(_vert - gameObject.transform.position);
         _environmentObj.transform.Rotate(new Vector3(90f, 0f, 0f));
+
+        _environmentObj.transform.Rotate(Vector3.up * Random.Range(0f, 360f), Space.Self);  //random rotation around local y - less repetition
         _environmentObj.transform.localScale = Random.Range(_obj.MinScale, _obj.MaxScale) * Vector3.one;
     }
 

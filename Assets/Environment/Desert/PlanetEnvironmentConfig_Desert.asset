@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4c02fd45fa66844a45be803b6c7ae3, type: 3}
-  m_Name: PlanetTerrainConfig_Basic
+  m_Script: {fileID: 11500000, guid: cbf5f167929d65645887bab511d4298f, type: 3}
+  m_Name: PlanetEnvironmentConfig_Desert
   m_EditorClassIdentifier: 
-  Density: 11
-  Radius: 1.5
+  GroundConfig:
+  - {fileID: 11400000, guid: 0dea07d5e16bc894aa7822f559bfd3ab, type: 2}

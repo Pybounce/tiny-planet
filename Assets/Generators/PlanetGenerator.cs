@@ -8,7 +8,7 @@ public class PlanetGenerator : MonoBehaviour
     private PlanetTerrainGenerator planetTerrainGenerator;
     private PlanetEnvironmentGenerator planetEnvironmentGenerator;
 
-    [SerializeField] private GroundEnvironmentConfig[] groundEnvironmentConfigs;
+    [SerializeField] private PlanetEnvironmentConfig planetEnvironmentConfig;
     [SerializeField] private PlanetTerrainConfig planetTerrainConfig;
 
     void Awake()
@@ -19,6 +19,7 @@ public class PlanetGenerator : MonoBehaviour
 
     private void Start()
     {
+        CheckNulls();
         Generate();
     }
 
@@ -31,7 +32,13 @@ public class PlanetGenerator : MonoBehaviour
         planetTerrainGenerator.Initialise(planetTerrainConfig);
         planetTerrainGenerator.Generate();
 
-        planetEnvironmentGenerator.Initialise(planetTerrainGenerator.TerrainMesh.vertices, groundEnvironmentConfigs);
+        planetEnvironmentGenerator.Initialise(planetTerrainGenerator.TerrainMesh.vertices, planetEnvironmentConfig);
         planetEnvironmentGenerator.Generate();
+    }
+
+    private void CheckNulls()
+    {
+        if (planetEnvironmentConfig == null) { throw new System.Exception("Planet Environment Config is null."); }
+        if (planetTerrainConfig == null) { throw new System.Exception("Planet Terrain Config is null."); }
     }
 }

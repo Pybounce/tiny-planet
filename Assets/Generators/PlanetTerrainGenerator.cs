@@ -49,7 +49,7 @@ public class PlanetTerrainGenerator : MonoBehaviour
             {
                 int _i = x + (y * _density);
                 Vector3 _vert = (((x / (_density - 1f)) - 0.5f) * 2f * _rightVec) + (((y / (_density - 1f)) - 0.5f) * 2f * _upVec) + _forwardVec;
-                _verts[_i] = _vert.normalized * config.Radius;
+                _verts[_i] = (_vert.normalized * config.Radius) + gameObject.transform.position;
                 _normals[_i] = _vert.normalized;
                 if (x < _density - 1 && y < _density - 1)
                 {
