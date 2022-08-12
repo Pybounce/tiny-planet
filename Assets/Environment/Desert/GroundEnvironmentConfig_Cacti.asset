@@ -21,6 +21,10 @@ MonoBehaviour:
     SpawnWeight: 100
     MinScale: 1.59
     MaxScale: 1.31
+  - Prefab: {fileID: 8682081305988498467, guid: fb0a1588ab2224a48869e51229473921, type: 3}
+    SpawnWeight: 60
+    MinScale: 1.02
+    MaxScale: 0.39
   PerlinFrequency: 1
   PerlinFloor: 0
   SpawnChance: 0.229
