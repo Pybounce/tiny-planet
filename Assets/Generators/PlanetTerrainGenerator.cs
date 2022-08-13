@@ -9,10 +9,12 @@ public class PlanetTerrainGenerator : MonoBehaviour
 {
     private PlanetTerrainConfig config;
     public Mesh TerrainMesh { get; private set; }
+    private int seed = 0;
 
-    public void Initialise(PlanetTerrainConfig _planetTerrainConfig)
+    public void Initialise(PlanetTerrainConfig _planetTerrainConfig, int _seed = 0)
     {
         this.config = _planetTerrainConfig;
+        this.seed = _seed;
     }
 
     public void Generate()
@@ -20,16 +22,17 @@ public class PlanetTerrainGenerator : MonoBehaviour
 
         Mesh[] _sphereFaces = new Mesh[6]
         {
-            SubDivideQuad(new Vector3(-1, 1, 1), new Vector3(1, 1, 1), new Vector3(-1, 1, -1), new Vector3(), config.Density),
-            SubDivideQuad(new Vector3(1, 1, 1), new Vector3(-1, 1, 1), new Vector3(1, -1, 1), new Vector3(), config.Density),
-            SubDivideQuad(new Vector3(1, 1, -1), new Vector3(1, 1, 1), new Vector3(1, -1, -1), new Vector3(), config.Density),
-            SubDivideQuad(new Vector3(-1, -1, -1), new Vector3(1, -1, -1), new Vector3(-1, -1, 1), new Vector3(), config.Density),
-            SubDivideQuad(new Vector3(-1, 1, 1), new Vector3(-1, 1, -1), new Vector3(-1, -1, 1), new Vector3(), config.Density),
-            SubDivideQuad(new Vector3(-1, 1, -1), new Vector3(1, 1, -1), new Vector3(-1, -1, -1), new Vector3(), config.Density)
+            SubDivideQuad(new Vector3(-1, 1, 1), new Vector3(1, 1, 1), new Vector3(-1, 1, -1), new Vector3(), config.AdjustedDensity),
+            SubDivideQuad(new Vector3(1, 1, 1), new Vector3(-1, 1, 1), new Vector3(1, -1, 1), new Vector3(), config.AdjustedDensity),
+            SubDivideQuad(new Vector3(1, 1, -1), new Vector3(1, 1, 1), new Vector3(1, -1, -1), new Vector3(), config.AdjustedDensity),
+            SubDivideQuad(new Vector3(-1, -1, -1), new Vector3(1, -1, -1), new Vector3(-1, -1, 1), new Vector3(), config.AdjustedDensity),
+            SubDivideQuad(new Vector3(-1, 1, 1), new Vector3(-1, 1, -1), new Vector3(-1, -1, 1), new Vector3(), config.AdjustedDensity),
+            SubDivideQuad(new Vector3(-1, 1, -1), new Vector3(1, 1, -1), new Vector3(-1, -1, -1), new Vector3(), config.AdjustedDensity)
         };
         GameObject _sphereObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        TerrainMesh = PybMesh.CombineMeshes(_sphereFaces);
+        TerrainMesh = PybMesh.RemoveVertDuplicates(PybMesh.CombineMeshes(_sphereFaces));
         _sphereObj.GetComponent<MeshFilter>().sharedMesh = TerrainMesh;
+        _sphereObj.GetComponent<MeshRenderer>().material = config.Material;
     }
 
 

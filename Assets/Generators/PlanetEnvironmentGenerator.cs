@@ -14,9 +14,9 @@ public class PlanetEnvironmentGenerator : MonoBehaviour
         orbitalEnvironmentGenerator = this.gameObject.AddComponent<OrbitalEnvironmentGenerator>();
     }
 
-    public void Initialise(Vector3[] _terrainVerts, PlanetEnvironmentConfig _planetEnvironmentConfig)
+    public void Initialise(Vector3[] _terrainVerts, PlanetEnvironmentConfig _planetEnvironmentConfig, int _seed = 0)
     {
-        groundEnvironmentGenerator.Initialise(_terrainVerts, _planetEnvironmentConfig.GroundConfig);
+        groundEnvironmentGenerator.Initialise(_terrainVerts, _planetEnvironmentConfig.GroundConfig, _seed);
     }
 
     public void Generate()

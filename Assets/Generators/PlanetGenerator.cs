@@ -7,6 +7,7 @@ public class PlanetGenerator : MonoBehaviour
 {
     private PlanetTerrainGenerator planetTerrainGenerator;
     private PlanetEnvironmentGenerator planetEnvironmentGenerator;
+    private int seed = 0;
 
     [SerializeField] private PlanetEnvironmentConfig planetEnvironmentConfig;
     [SerializeField] private PlanetTerrainConfig planetTerrainConfig;
@@ -19,20 +20,17 @@ public class PlanetGenerator : MonoBehaviour
 
     private void Start()
     {
+        seed = Random.Range(1000, 100000);
         CheckNulls();
         Generate();
     }
 
-    public void Initialise()
-    {
-    }
-
     public void Generate()
     {
-        planetTerrainGenerator.Initialise(planetTerrainConfig);
+        planetTerrainGenerator.Initialise(planetTerrainConfig, seed);
         planetTerrainGenerator.Generate();
 
-        planetEnvironmentGenerator.Initialise(planetTerrainGenerator.TerrainMesh.vertices, planetEnvironmentConfig);
+        planetEnvironmentGenerator.Initialise(planetTerrainGenerator.TerrainMesh.vertices, planetEnvironmentConfig, seed);
         planetEnvironmentGenerator.Generate();
     }
 

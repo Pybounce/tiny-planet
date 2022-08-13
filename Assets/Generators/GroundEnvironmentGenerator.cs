@@ -9,12 +9,13 @@ public class GroundEnvironmentGenerator : MonoBehaviour
 {
     private Vector3[] terrainVerts;
     private GroundEnvironmentConfig[] groundConfigs;
+    private int seed = 0;
 
-
-    public void Initialise(Vector3[] _terrainVerts, GroundEnvironmentConfig[] _groundConfigs)
+    public void Initialise(Vector3[] _terrainVerts, GroundEnvironmentConfig[] _groundConfigs, int _seed = 0)
     {
         this.terrainVerts = _terrainVerts;
         this.groundConfigs = _groundConfigs;
+        this.seed = _seed;
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public class GroundEnvironmentGenerator : MonoBehaviour
 
     private bool ConfigPassPerlinChance(GroundEnvironmentConfig _config, Vector3 _vert)
     {
-        return PybMath.PerlinNoise3D(_vert) >= _config.PerlinFloor;
+        return PybMath.PerlinNoise3D(_vert, seed, _config.PerlinFrequency) >= _config.PerlinFloor;
     }
 
     /// <summary>

@@ -7,4 +7,6 @@ public class PlanetTerrainConfig : ScriptableObject
 {
     public int Density = 1;
     public float Radius = 1f;
+    public Material Material;
+    public int AdjustedDensity { get { return (int)((float)Density * Radius); } }
 }
