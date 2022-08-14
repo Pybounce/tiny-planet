@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbf5f167929d65645887bab511d4298f, type: 3}
-  m_Name: PlanetEnvironmentConfig_Forest
+  m_Script: {fileID: 11500000, guid: c15345d461450e74fa462140dd5f6dfc, type: 3}
+  m_Name: PlanetSkyConfig_Normal
   m_EditorClassIdentifier: 
-  GroundConfig:
-  - {fileID: 11400000, guid: f7443e59d88cdb24e8ece5772b6dd75e, type: 2}
+  SkyboxMat: {fileID: 2100000, guid: 5006675dd0371df419e4bea0c541036e, type: 2}
+  AmbientColor: {r: 1, g: 1, b: 1, a: 0}

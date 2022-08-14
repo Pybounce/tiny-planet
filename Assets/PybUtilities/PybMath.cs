@@ -34,7 +34,8 @@ namespace PybUtilities
         }
         public static float PerlinNoise3D(Vector3 v3, int _seed = 0, float _frequency = 1f)
         {
-            return PerlinNoise3D(v3.x, v3.y, v3.z, _seed, _frequency);
+            float _return = PerlinNoise3D(v3.x, v3.y, v3.z, _seed, _frequency);
+            return _return;
         }
     }
 

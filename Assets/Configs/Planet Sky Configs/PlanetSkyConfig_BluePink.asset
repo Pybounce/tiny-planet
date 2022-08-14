@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15345d461450e74fa462140dd5f6dfc, type: 3}
+  m_Name: PlanetSkyConfig_BluePink
+  m_EditorClassIdentifier: 
+  SkyboxMat: {fileID: 2100000, guid: 9888763c706c8d3439bceb8923bfd46e, type: 2}
+  AmbientColor: {r: 0.73997563, g: 0.754717, b: 0.5802777, a: 1}

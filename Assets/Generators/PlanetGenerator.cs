@@ -7,15 +7,18 @@ public class PlanetGenerator : MonoBehaviour
 {
     private PlanetTerrainGenerator planetTerrainGenerator;
     private PlanetEnvironmentGenerator planetEnvironmentGenerator;
+    private PlanetSkyGenerator planetSkyGenerator;
     private int seed = 0;
 
     [SerializeField] private PlanetEnvironmentConfig planetEnvironmentConfig;
     [SerializeField] private PlanetTerrainConfig planetTerrainConfig;
+    [SerializeField] private PlanetSkyConfig planetSkyConfig;
 
     void Awake()
     {
         planetTerrainGenerator = this.gameObject.AddComponent<PlanetTerrainGenerator>();
         planetEnvironmentGenerator = this.gameObject.AddComponent<PlanetEnvironmentGenerator>();
+        planetSkyGenerator = this.gameObject.AddComponent<PlanetSkyGenerator>();
     }
 
     private void Start()
@@ -27,6 +30,9 @@ public class PlanetGenerator : MonoBehaviour
 
     public void Generate()
     {
+        planetSkyGenerator.Initialise(planetSkyConfig);
+        planetSkyGenerator.Generate();
+
         planetTerrainGenerator.Initialise(planetTerrainConfig, seed);
         planetTerrainGenerator.Generate();
 

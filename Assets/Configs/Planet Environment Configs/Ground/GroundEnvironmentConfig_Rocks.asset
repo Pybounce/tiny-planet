@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34012ee274590b44bb2d9652d19c0dd2, type: 3}
+  m_Name: GroundEnvironmentConfig_Rocks
+  m_EditorClassIdentifier: 
+  EnvironmentPrefabs:
+  - Prefab: {fileID: 6982677696241952922, guid: ccef76818bed5f9488daa88990be9352, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.8
+    MaxScale: 0.9
+  - Prefab: {fileID: 8328272631781693348, guid: 5d175c8938172204bbfac2279f71ec3f, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.47
+    MaxScale: 0.71
+  - Prefab: {fileID: 3132621892978940549, guid: 04020112a2ceadc4f91831b936ea0916, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.8
+    MaxScale: 0.9
+  - Prefab: {fileID: 8279933378614424166, guid: e5a407603b760494283795a80748dced, type: 3}
+    SpawnWeight: 100
+    MinScale: 0.56
+    MaxScale: 0.73
+  PerlinFrequency: 1.2
+  PerlinFloor: 0.583
+  SpawnChance: 0.943

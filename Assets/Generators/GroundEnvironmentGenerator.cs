@@ -25,13 +25,16 @@ public class GroundEnvironmentGenerator : MonoBehaviour
     {
         foreach (Vector3 _vert in terrainVerts)
         {
-            foreach (GroundEnvironmentConfig _config in groundConfigs)
+            for (int i = 0; i < groundConfigs.Length; i++)
             {
+                GroundEnvironmentConfig _config = groundConfigs[i];
                 if (ConfigPassBasicChance(_config) == false) { continue; }
-                if (ConfigPassPerlinChance(_config, _vert) == false) { continue; }
+                if (ConfigPassPerlinChance(_config, _vert, seed + (i * 234)) == false) { continue; }
                 GroundEnvironmentObject _objToPlace = GetObjectToPlace(_config);
                 PlaceObjectAtVert(_objToPlace, _vert);
+                break;
             }
+
         }
     }
 
@@ -40,9 +43,9 @@ public class GroundEnvironmentGenerator : MonoBehaviour
         return PybMath.Chance(_config.SpawnChance);
     }
 
-    private bool ConfigPassPerlinChance(GroundEnvironmentConfig _config, Vector3 _vert)
+    private bool ConfigPassPerlinChance(GroundEnvironmentConfig _config, Vector3 _vert, int _seed = 0)
     {
-        return PybMath.PerlinNoise3D(_vert, seed, _config.PerlinFrequency) >= _config.PerlinFloor;
+        return PybMath.PerlinNoise3D(_vert, _seed, _config.PerlinFrequency) >= _config.PerlinFloor;
     }
 
     /// <summary>
@@ -71,10 +74,11 @@ public class GroundEnvironmentGenerator : MonoBehaviour
     private void PlaceObjectAtVert(GroundEnvironmentObject _obj, Vector3 _vert)
     {
         GameObject _environmentObj = Instantiate(_obj.Prefab);
-        _environmentObj.transform.position = _vert;
-
+        float _MRA = 1.5f;   //max random angle
+        Vector3 _newRot = Quaternion.Euler(Random.Range(-_MRA, _MRA), Random.Range(-_MRA, _MRA), Random.Range(-_MRA, _MRA)) * (_vert - transform.position);
+        _environmentObj.transform.position = _newRot + transform.position;
         //rotate to the planet normal
-        _environmentObj.transform.rotation = Quaternion.LookRotation(_vert - gameObject.transform.position);
+        _environmentObj.transform.rotation = Quaternion.LookRotation(_newRot);
         _environmentObj.transform.Rotate(new Vector3(90f, 0f, 0f));
 
         _environmentObj.transform.Rotate(Vector3.up * Random.Range(0f, 360f), Space.Self);  //random rotation around local y - less repetition
