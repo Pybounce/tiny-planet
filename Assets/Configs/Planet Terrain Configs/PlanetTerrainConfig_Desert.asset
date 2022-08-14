@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4c02fd45fa66844a45be803b6c7ae3, type: 3}
   m_Name: PlanetTerrainConfig_Desert
   m_EditorClassIdentifier: 
-  Density: 9
-  Radius: 1.5
+  Density: 8
+  Radius: 2.5
   Material: {fileID: 2100000, guid: 4e6d93ec2434c2e4b92fc35aaa677dae, type: 2}

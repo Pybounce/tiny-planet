@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlanetSkyConfig_Normal
   m_EditorClassIdentifier: 
   SkyboxMat: {fileID: 2100000, guid: 5006675dd0371df419e4bea0c541036e, type: 2}
-  AmbientColor: {r: 1, g: 1, b: 1, a: 0}
+  AmbientColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}

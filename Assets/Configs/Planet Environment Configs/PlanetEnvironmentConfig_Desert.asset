@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundConfig:
   - {fileID: 11400000, guid: 0dea07d5e16bc894aa7822f559bfd3ab, type: 2}
+  - {fileID: 11400000, guid: 8934fc5fed4f3084bb0902d357f76cbd, type: 2}

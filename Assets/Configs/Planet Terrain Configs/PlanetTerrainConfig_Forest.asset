@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlanetTerrainConfig_Forest
   m_EditorClassIdentifier: 
   Density: 8
-  Radius: 3
+  Radius: 2.5
   Material: {fileID: 2100000, guid: dcafb4e8141e38f4daa4de8e1b79266f, type: 2}
